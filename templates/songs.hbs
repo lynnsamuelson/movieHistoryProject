@@ -1,0 +1,13 @@
+
+
+<div class='song'>
+  {{#each songs}}
+  <div>
+    <h3 class = "song-title">{{title}} </h3>
+      <p class = 'song-details'> {{artist}} |  {{album}}  |  {{year}}  | {{genre}}
+      </p> 
+    <button type ='button' class = 'removebtn' id = 'deleteButton'>Delete Song</button> 
+  </div>
+  {{/each}}
+</div>
+   
