@@ -1,10 +1,36 @@
-@import 'nav'
+// @import 'nav'
+
+// $font-stack:  'Josefin Sans', sans-serif;
 
 
-body {
-    background-image: url("images/red-curtaincopy.jpg");
-    background-repeat: no-repeat;
-    background-position: right top;
-    margin-right: 200px;
+div.big-image { 
+background-image: url(images/proscenium.jpeg) no-repeat center center fixed; 
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
 }
 
+body {
+  font-family: 'Josefin Sans', sans-serif;
+
+}
+
+.button-augment {
+  border: 1px solid black;
+  width: 100px;
+  margin-top: 15px;
+
+}
+
+nav {
+  background-color: #8DADB8; 
+}
+
+label {
+  font-size: 1.5em;
+}
+
+.radio {
+  display: inline;
+}

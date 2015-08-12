@@ -1,6 +1,25 @@
-nav {
-  height: 200rem;
-  
 
 
-}
+$nav-bg-color: #0D4D4D;
+$nav-on-hover: #669999;
+
+.augment-nav {
+    background-color: $nav-bg-color;
+
+    li {
+      font-size: 2em; 
+      padding: 1em;
+    }
+
+    a {
+      text-decoration: none;
+      color: black;
+    }
+
+    a:hover {
+      font-weight: 700;
+      text-shadow: 1px 1px 1px $nav-on-hover;
+      background-color: white;
+     }
+} 
+

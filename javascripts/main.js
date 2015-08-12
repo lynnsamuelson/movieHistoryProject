@@ -4,46 +4,70 @@ requirejs.config({
   paths: {
     'jquery': '../bower_components/jquery/dist/jquery.min',
     'hbs': '../bower_components/require-handlebars-plugin/hbs',
-    'bootstrap': '../bower_components/bootstrap/dist/js/bootstrap.min'
+    'bootstrap': '../bower_components/bootstrap/dist/js/bootstrap.min',
+    'Firebase': '../bower_components/firebase/firebase',
+    'lodash': '../bower_components/lodash/lodash.min'
   },
+
   shim: {
-    'bootstrap': ['jquery']
+    'bootstrap': ['jquery'],
+    'firebase': {
+      exports: 'Firebase'
+    }
   }
 });
 
 
+
+
+
+
+
 // Retrieve songs from Firebase and populate the DOM
+var tempMovies;
 
 requirejs(
-  ['jquery', 'hbs', 'bootstrap', 'DOM-access', 'populate-movies'], 
-  function($, Handlebars, bootstrap, domAccess, pop) {
+  ['jquery', 'hbs', 'bootstrap', 'ask-OMDB','DOM-access', 'Firebase', 'lodash'], 
+  function($, Handlebars, bootstrap, ask, domAccess, _firebase, lodash) {
+    
+      $("#searchButton").click(function(evt){
+         console.log(evt);
+          ask.getMovies(function(movie) {
+            tempMovies = movie;
 
-    pop.querySongs(function(data) {
-      allSongs = data;
-      
-      // binding the song array
-      require(['hbs!../templates/songs'], function(songTemplate) {
-        $('#song-list').html(songTemplate(data));
-
-    });  
-  });
-  
-
-
-  
-
-    // Refresh song list by clicking on View Music on Nav bar
-    $(document).on('click', '#refresh-music', function() {
-      get_more.querySongs(function(data) {
-        // console.log(data);
-
-
-        require(['hbs!../templates/songs'], function(songTemplate) {
-          $('#song-list').html(songTemplate(songs));
+             // success:function() {
+             // $('#titleInput').val("");
+             //  }
+      // Put data into form fields
+      $('#titleIn').val(movie.Title);
+      $('#actorsIn').val(movie.Actors);
+      $('#yearIn').val(movie.Year);
+     
+        
 
         });
       });
-    }); 
+    });
+  
+    
+
+    
+
+
+  
+
+    // // Refresh song list by clicking on View Music on Nav bar
+    // $(document).on('click', '#refresh-music', function() {
+    //   get_more.querySongs(function(data) {
+    //     // console.log(data);
+
+
+    //     require(['hbs!../templates/songs'], function(songTemplate) {
+    //       $('#song-list').html(songTemplate(songs));
+
+    //     });
+    //   });
+    // }); 
 
       
 
@@ -55,32 +79,23 @@ requirejs(
    
      
     // Post new song to Firebase
-      $('#post-song').on ('click', function() {
+              
           
-          var newSong = {
-                title : $('#song-title-input').val(),
-                artist : $('#song-artist-input').val(),
-                album : $('#song-album-input').val(),
-                year : $('#song-year-input').val(),
-                genre : $('#song-genre-input').val()
-      };
-                    
-          
-          $.ajax({
-            url: 'https://torrid-torch-3031.firebaseio.com/songs.json',
-            method: 'POST',
-            data: JSON.stringify(newSong),
-            success:function() {
-               $('.inputField').val("");
-          }
-        });
-      });
+//           $.ajax({
+//             url: 'https://torrid-torch-3031.firebaseio.com/songs.json',
+//             method: 'POST',
+//             data: JSON.stringify(newSong),
+//           //   success:function() {
+//           //      $('.inputField').val("");
+//           // }
+//         });
+//       });
      
-      // Temporary delete button on song list
-     $(document).on ('click', '#deleteButton', function (){
-            $(this).parent().remove();
-      });  
-});
+//       // Temporary delete button on song list
+//      $(document).on ('click', '#deleteButton', function (){
+//             $(this).parent().remove();
+//       });  
+// });
 
 
 
