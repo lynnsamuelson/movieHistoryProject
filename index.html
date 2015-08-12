@@ -1,39 +1,88 @@
 <!doctype html>
 
 <html lang='en'>
-<head>
-  <meta charset='utf-8'>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel='stylesheet' type = 'text/css' href='bower_components/bootstrap/dist/css/bootstrap.min.css'>
-  <link rel = 'stylesheet' type  = 'text/css' href = 'styles/main.css'>
-  <title>Movie History Project</title>
-</head>
+  <head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type = 'text/css' href='bower_components/bootstrap/dist/css/bootstrap.min.css'>
+    <link rel = 'stylesheet' type  = 'text/css' href = 'styles/main.css'>
+    <title>Movie History Project</title>
+    
+  </head>
 
-<body>
- 
-  <header>
-  </header>
+  <body>
+   
+    <header>
+      <div class='container-fluid'>
+
+        <nav class='navbar navbar-default'>
+            <!-- Brand and toggle get grouped for better mobile display -->
+          <div class='navbar-header'>
+          <img src='images/Movies.gif' alt = 'movies' width = 130/>
+            
+          </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class='collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
+           
+            <form class='navbar-form navbar-left' role='search'>
+              <div class='form-group'>
+                <label> Search movies by Title
+                <input type='text' id = 'titleInput' class='form-control' placeholder='Search'></label>
+              </div>
+              <button type='submit' id = 'searchButton' class='btn btn-default'>Search</button>
+            </form>
+            
+          </div><!-- /.navbar-collapse -->
+        </nav>
+      </div><!-- /.container-fluid -->
+    </header>
+      <div id= 'main-content' 
+        <div class = 'container-fluid'>
+          <div class="row">
+            <div class="col-md-4" id = 'movie-form'>
+            <form>
+              <div class="input-group">
+                <input id = 'titleIn' type = 'text' name = 'title'>
+                <br>
+                <input id = 'actorsIn' type = 'text' name = 'actors'>
+                <br>
+                <input id = 'yearIn' type = 'text' name = 'year'>
+                <form action="">
+                  <input type="radio" name="viewed" value="false">No<br>
+                  <input type="radio" name="viewed" value="true">Yes
+                  </form>
+                <label> Rating: </label>
+                   <select id="ratingIn" name="rating" >
+                     <option> 1 </option>
+                     <option> 2 </option>
+                     <option> 3 </option>
+                     <option> 4 </option>
+                     <option> 5 </option>
+                     <option> 6 </option>
+                     <option> 7 </option>
+                     <option> 8 </option>
+                     <option> 9 </option>
+                     <option> 10 </option>
+
+              </div><!-- /input-group -->
+            </form>
 
 
-
-<div class = 'container-fluid'>
-  <div class='row'>
-    <div class='col-sm-3'>
-    </div>
-  </div>
-</div>   
-     
-
-       
-
-    <div class='col-sm-9'> 
-      <div id='movie-list'>
-      
+            </div>
+            <div class="col-md-8" id = 'movie-list'>.col-md-6</div>
+          </div>  <!-- /row -->
+        </div>
       </div>
-    </div>
+
+
     
 
-<script data-main='javascripts/main' src ='bower_components/requirejs/require.js'></script>
+         
 
-</body
+      
+
+  <script data-main='javascripts/main' src ='bower_components/requirejs/require.js'></script>
+
+  </body
 </html>
