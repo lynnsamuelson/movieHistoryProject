@@ -1,12 +1,14 @@
 {{#each movie}}
- <div>
-   <h3 class = "title">{{title}} </h3>
-     <p id = 'movie-list'> {{actors}} | {{year}}  | {{genre}}
-      <br>
-         Have I seen it?: {{seenit}}
-      <br>   
-         Rating: {{rating}}
-     </p> 
-   <button type ='button'  id = 'deleteFB'>Delete forever</button> 
- </div>
- {{/each}}
+<section class="movie-holder" key="{{@key}}">
+  <div>
+    <img src="{{poster}}" alt="{{title}} poster">
+  </div>
+  {{#if seenit}}
+  <div class="rating">stars go here</div>
+  {{else}}
+  <div>
+    <button class="btn btn-success watched-btn">Watched</button>
+  </div>
+  {{/if}}
+</section>
+{{/each}}
