@@ -14,32 +14,6 @@ nav {
     text-shadow: 1px 1px 1px #669999;
     background-color: white; }
 
-form {
-  text-align: right; }
-
-.form-control {
-  display: block; }
-
-label {
-  font-size: 1.5em;
-  padding: 5px;
-  margin-right: 5px; }
-
-.text-input {
-  margin-top: 25px;
-  margin-left: 25px;
-  align: right;
-  width: 150px;
-  height: 1.5em; }
-
-.radio {
-  display: inline;
-  font-size: 2em; }
-
-.select {
-  font-size: 1.35em;
-  width: 72px; }
-
 .fixed-position {
   position: fixed;
   width: 100% !important; }
