@@ -22,7 +22,8 @@ function($, Handlebars, bootstrap, ask, _firebase) {
   var tempMovies;
   var allMovies;
 
-  $("#searchButton").click(function(evt){
+  $("#find").click(function(evt){
+    evt.preventDefault();
     console.log(evt);
     ask.getMovies(function(movie) {
       tempMovies = movie; 
