@@ -64,9 +64,7 @@ function($, Handlebars, bootstrap, ask, _firebase) {
 
     var movie = snapshot.val();
 
-    require(
-    ['hbs!../templates/movies'],
-    function(movieTemplate){
+    require(['hbs!../templates/movies'], function(movieTemplate){
       var populatedTemplate = movieTemplate({movie:movie});
       $("#movie-list").html(populatedTemplate);
     });     
