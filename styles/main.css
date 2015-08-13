@@ -16,7 +16,8 @@ nav {
 
 .fixed-position {
   position: fixed;
-  width: 100% !important; }
+  width: 100% !important;
+  z-index: 99; }
 
 .row, header, nav, .container-fluid {
   margin: 0 !important;
