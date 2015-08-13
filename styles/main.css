@@ -52,7 +52,10 @@ body {
   width: 100px;
   margin-top: 15px; }
 
-#movie-list {
-  overflow: scroll; }
+.movie-holder {
+  background-color: rgba(150, 150, 150, 0.7);
+  border-radius: 20px;
+  padding: 20px;
+  margin: 20px; }
 
 /*# sourceMappingURL=main.css.map */

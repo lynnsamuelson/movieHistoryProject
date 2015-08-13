@@ -50,15 +50,15 @@ requirejs(
           newMovie.year = $("#yearIn").val();
           newMovie.rating = $("#ratingIn").val();
           console.log("value of radio buttons", $("#seenIt").val());
-          newMovie.seenit = $("input[name='viewed']:checked").val() === "yes" ? true : false,
+          //newMovie.seenit = $("input[name='viewed']:checked").val() === "yes" ? true : false,
           // console.log(newMovie);
     
           $.ajax({
-          url: "https://movies-refactored.firebaseio.com/movie.json",
-          method: "POST",
-          data: JSON.stringify(newMovie)
+            url: "https://movies-refactored.firebaseio.com/movie.json",
+            method: "POST",
+            data: JSON.stringify(newMovie)
           }).done(function(addedMovie) {
-          console.log("Your added movie is", addedMovie);
+            console.log("Your added movie is", addedMovie);
           });   
 
           $("#titleIn").val('');
