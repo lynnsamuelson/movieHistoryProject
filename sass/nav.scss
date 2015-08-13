@@ -5,7 +5,7 @@ $button-on-hover: #669999;
 
 nav {
   width: 100%;
-  height: 15%;
+  height: 10%;
   min-height: 250px;
 }
 
@@ -13,8 +13,9 @@ nav {
     background-color: $nav-bg-color !important;
 
     button {
+      position: center;
       font-size: 1.25em; 
-      padding: 2px;
+      margin-bottom: 15px;
     }
 
     button:hover {
@@ -23,6 +24,7 @@ nav {
       background-color: white;
      }
 } 
+
 
 // ? how make the search button stack at a threshold
 // ? how to make the nav bar statis AND go all the way across the page?

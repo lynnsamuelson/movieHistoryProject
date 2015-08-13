@@ -3,8 +3,17 @@
 
 $font-stack:  'Josefin Sans', sans-serif;
 
-.row {
-  border: 1px solid blue;
+
+.fixed-position {
+	position: fixed;
+	width: 100% !important;
+}
+
+
+
+.row, header, nav, .container-fluid {
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 
@@ -21,12 +30,14 @@ body {
   margin-top: 15px;
 }
 
+a {
+  position: center;
+  padding-top: 200px;
+}
+
 
 // .transparent {
 //   background-color: rgba(0, 0, 0, 0);
 // }
 
 
-#movie-list {
-  overflow: scroll;
-}
