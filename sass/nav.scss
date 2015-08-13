@@ -10,7 +10,7 @@ nav {
 }
 
 .augment-nav {
-    background-color: $nav-bg-color;
+    background-color: $nav-bg-color !important;
 
     button {
       font-size: 1.25em; 

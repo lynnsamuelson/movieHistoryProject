@@ -1,3 +1,5 @@
+// The main module (i.e. javascripts/main.js) should then use the 
+// return objects from all three dependencies to populate your song list.
 
 requirejs.config({
   baseUrl: './javascripts',
@@ -5,14 +7,12 @@ requirejs.config({
     'jquery': '../bower_components/jquery/dist/jquery.min',
     'hbs': '../bower_components/require-handlebars-plugin/hbs',
     'bootstrap': '../bower_components/bootstrap/dist/js/bootstrap.min',
-    'Firebase': '../bower_components/firebase/firebase',
-    'lodash': '../bower_components/lodash/lodash.min'
+    'firebase': '../bower_components/firebase/firebase'
   },
-
   shim: {
     'bootstrap': ['jquery'],
-    'firebase': {
-      exports: 'Firebase'
+    'fireebase': {
+      export: 'Firebase'
     }
   }
 });
@@ -23,82 +23,63 @@ requirejs.config({
 
 
 
-// Retrieve songs from Firebase and populate the DOM
-var tempMovies;
-
 requirejs(
-  ['jquery', 'hbs', 'bootstrap', 'ask-OMDB','DOM-access', 'Firebase', 'lodash'], 
-  function($, Handlebars, bootstrap, ask, domAccess, _firebase, lodash) {
-    
-      $("#searchButton").click(function(evt){
-         console.log(evt);
-          ask.getMovies(function(movie) {
-            tempMovies = movie;
+    ["jquery","hbs", "bootstrap",'ask-OMDB', 'firebase' ],
+    function($, Handlebars, bootstrap, ask, _firebase) {
+      var tempMovies;
+      var allMovies;
 
-             // success:function() {
-             // $('#titleInput').val("");
-             //  }
-      // Put data into form fields
-      $('#titleIn').val(movie.Title);
-      $('#actorsIn').val(movie.Actors);
-      $('#yearIn').val(movie.Year);
-     
-        
+        $("#searchButton").click(function(evt){
+          console.log(evt);
+          ask.getMovies(function(movie) {
+            tempMovies = movie; 
+            $("#titleIn").val(movie.Title);
+            $('#actorsIn').val(movie.Actors);
+            $('#yearIn').val(movie.Year);
+          });
+          $("#titleImput").val('');
+        });
+
+
+        $("#addToMyList").click(function(addevt){
+          console.log(addevt);
+
+          var newMovie = {};
+          newMovie.title = $("#titleIn").val();
+          newMovie.actors = $("#actorsIn").val();
+          newMovie.year = $("#yearIn").val();
+          newMovie.rating = $("#ratingIn").val();
+          console.log("value of radio buttons", $("#seenIt").val());
+          newMovie.seenit = $("input[name='viewed']:checked").val() === "yes" ? true : false,
+          // console.log(newMovie);
+    
+          $.ajax({
+          url: "https://glaring-torch-7890.firebaseio.com/movie.json",
+          method: "POST",
+          data: JSON.stringify(newMovie)
+          }).done(function(addedMovie) {
+          console.log("Your added movie is", addedMovie);
+          });   
+
+          $("#titleIn").val('');
+          $("#actorsIn").val('');
+          $("#yearIn").val('');
 
         });
-      });
-    });
-  
-    
-
-    
 
 
-  
+        var myFirebaseRef = new Firebase("https://glaring-torch-7890.firebaseio.com/");
+        myFirebaseRef.child("movie").on("value", function(snapshot) {
 
-    // // Refresh song list by clicking on View Music on Nav bar
-    // $(document).on('click', '#refresh-music', function() {
-    //   get_more.querySongs(function(data) {
-    //     // console.log(data);
+          var movie = snapshot.val();
 
 
-    //     require(['hbs!../templates/songs'], function(songTemplate) {
-    //       $('#song-list').html(songTemplate(songs));
+          require(
+            ['hbs!../templates/movies'],
+            function(movieTemplate){
+              var populatedTemplate = movieTemplate({movie:movie});
+              $("#movie-list").html(populatedTemplate);
+            });     
+        });
 
-    //     });
-    //   });
-    // }); 
-
-      
-
-      // $(document).on('click', '#reviewSong'(function() {
-      //   require(['hbs...templates/songsToInput'] function(songReview){
-      //     $('songsToInput').html(songReview(newSong));
-      //   })
-      // }));
-   
-     
-    // Post new song to Firebase
-              
-          
-//           $.ajax({
-//             url: 'https://torrid-torch-3031.firebaseio.com/songs.json',
-//             method: 'POST',
-//             data: JSON.stringify(newSong),
-//           //   success:function() {
-//           //      $('.inputField').val("");
-//           // }
-//         });
-//       });
-     
-//       // Temporary delete button on song list
-//      $(document).on ('click', '#deleteButton', function (){
-//             $(this).parent().remove();
-//       });  
-// });
-
-
-
-
-
-   
+  });    

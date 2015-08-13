@@ -4,7 +4,7 @@ nav {
   min-height: 250px; }
 
 .augment-nav {
-  background-color: #8DADB8; }
+  background-color: #8DADB8 !important; }
   .augment-nav button {
     font-size: 1.25em;
     padding: 2px; }

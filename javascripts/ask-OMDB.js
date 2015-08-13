@@ -4,7 +4,7 @@ define(['jquery'], function($) {
  
    return {
      getMovies: function(callbackfunction) {
-       var title = $("#titleInput").val();
+       var title = $("#titleImput").val();
      $.ajax({
        url: "http://www.omdbapi.com/?t=" + title}).done(function(data) {
      
