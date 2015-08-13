@@ -54,7 +54,7 @@ requirejs(
           // console.log(newMovie);
     
           $.ajax({
-          url: "https://glaring-torch-7890.firebaseio.com/movie.json",
+          url: "https://movies-refactored.firebaseio.com/movie.json",
           method: "POST",
           data: JSON.stringify(newMovie)
           }).done(function(addedMovie) {
@@ -68,7 +68,7 @@ requirejs(
         });
 
 
-        var myFirebaseRef = new Firebase("https://glaring-torch-7890.firebaseio.com/");
+        var myFirebaseRef = new Firebase("https://movies-refactored.firebaseio.com/");
         myFirebaseRef.child("movie").on("value", function(snapshot) {
 
           var movie = snapshot.val();
