@@ -39,12 +39,35 @@
         </header>
       </div>
     </div>
+
     <div class="row">
-      <div class="col-md-1 col-lg-2"><!-- spacer sidebar --></div>
-      <div class="col-sm-12 col-md-10 col-lg-8" id='movie-list'>
-        <!-- Movie List will go here -->
+
+      <div class="col-md-1 col-lg-2"><!-- spacer sidebar -->
+
       </div>
-      <div class="col-md-1 col-lg-2"><!-- spacer sidebar --></div>
+
+      <div class="col-sm-12 col-md-10 col-lg-8">
+        <div class="btn-group" id="filterbtn" role="group" aria-label="...">
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default">Watched</button>
+          </div>
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default">Wish</button>
+          </div>
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default">Add</button>
+          </div>
+        </div>
+        <div id='movie-list'><!-- Movie List will go here -->
+        </div>
+      </div>
+
+      <div class="col-md-1 col-lg-2"><!-- spacer sidebar -->
+
+
+
+      </div>
+
     </div>
     <script data-main='javascripts/main' src='bower_components/requirejs/require.js'></script>
   </body>
