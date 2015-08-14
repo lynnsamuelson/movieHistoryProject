@@ -30,7 +30,10 @@ function($, Handlebars, bootstrap, ask, _firebase, starrating, templates) {
     });
   });
 
-  
+  function keyGetter(clickedElement) {
+    var keyOfClickedMovie = $(clickedElement).parents(".movie-holder").attr("key");
+    return keyOfClickedMovie;
+  }
 
 
   $("#find-results").on("click", ".add-btn", function(evt){
@@ -47,6 +50,18 @@ function($, Handlebars, bootstrap, ask, _firebase, starrating, templates) {
     });
   });
 
+  $("#movie-list").on("mouseover", ".poster", function(e) {
+    $(this).find(".delete-btn").removeClass("hidden");
+  });
+
+  $("#movie-list").on("mouseout", ".poster", function(e) {
+    $(this).find(".delete-btn").addClass("hidden");
+  });
+
+  $("#movie-list").on("click", ".delete-btn", function(e) {
+    var keyOfMovieToDelete = keyGetter($(this));
+    myFirebaseRef.child("movie").child(keyOfMovieToDelete).set(null);
+  });
 
   var myFirebaseRef = new Firebase("https://movies-refactored.firebaseio.com/");
   myFirebaseRef.child("movie").on("value", function(snapshot) {
