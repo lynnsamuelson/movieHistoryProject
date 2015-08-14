@@ -23,6 +23,7 @@ requirejs(["jquery", "hbs", "bootstrap", "ask-OMDB", "firebase","star-rating", "
 function($, Handlebars, bootstrap, ask, _firebase, starrating, templates) {
   var tempMovies;
   var allMovies;
+  var arrayOfMovies = [];
 
   $("#search").click(function(evt){
     evt.preventDefault();
@@ -40,6 +41,10 @@ function($, Handlebars, bootstrap, ask, _firebase, starrating, templates) {
       $("#find-results").html(templates.found(searchedMovies));
     });
   });
+
+  function alphebetizer(sentObject) {
+
+  }
 
   function keyGetter(clickedElement) {
     var clickedMovie = {};
@@ -108,6 +113,13 @@ function($, Handlebars, bootstrap, ask, _firebase, starrating, templates) {
   var myFirebaseRef = new Firebase("https://movies-refactored.firebaseio.com/");
   myFirebaseRef.child("movie").on("value", function(snapshot) {
     var movie = snapshot.val();
+    console.log(movie);
+    for(var key in movie){
+      var movieObj = {};
+      movieObj[key] = movie[key];
+      arrayOfMovies[arrayOfMovies.length] = movieObj;
+    }
+    console.log(arrayOfMovies);
     $("#movie-list").html(templates.movies({movie:movie}));
     $(".input-id").rating({'size':'sm', 'showCaption': false, 'showClear': false});
   });

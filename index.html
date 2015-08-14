@@ -10,24 +10,6 @@
     <title>Movie History Project</title>
   </head>
   <body>
-    <!-- Modal -->
-    <div class="modal fade" id="find-modal" tabindex="-1" role="dialog" aria-labelledby="find-modal-label">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="find-modal-label">Find Movie Results</h4>
-          </div>
-          <div id="find-results" class="modal-body">
-            <!-- Popluated via Handlebars -->
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- end modal -->
     <div id="cont" class="container-fluid">
       <div class="row fixed-position">
         <header class="col-xs-12">
@@ -50,8 +32,7 @@
                 <div class="form-group">
                   <input id="search-input" type="text" class="form-control" placeholder="Search">
                 </div>
-                <button id="search" type="submit" class="btn btn-default">Search</button>
-                <button id="find" type="submit" class="btn btn-default" data-toggle="modal" data-target="#find-modal">Find</button>
+                <button id="find" type="submit" class="btn btn-default">Search</button>
               </form>
             </div><!-- /.navbar-collapse -->
           </nav>
