@@ -36,11 +36,31 @@ function($, Handlebars, bootstrap, ask, _firebase, starrating, templates) {
   });
 
   $("#find").click(function(evt){
+    console.log(evt);
     evt.preventDefault();
     ask.getMovies("find", function(searchedMovies) {
       $("#find-results").html(templates.found(searchedMovies));
     });
   });
+
+//Filter Button inbetween posters and Nav Bar. Tied to #Find Id
+//Which is tied to the search button in the HTML
+//====================================================================    
+    $("#filterbtn").click(function(evt){
+    console.log(evt);
+    evt.preventDefault();
+    ask.getMovies("find", function(searchedMovies) {
+      $("#find-results").html(templates.found(searchedMovies));
+    });
+  });
+
+  //Clicking the Search Button in the HTML will
+  //make the filter buttons Visible
+//==============================================
+$( "#find" ).click(function() {
+  $("#filterbtn").show( 1 );
+});
+
 
   function alphebetizer(sentObject) {
 

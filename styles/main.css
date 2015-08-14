@@ -41,9 +41,13 @@ a {
   position: center;
   padding-top: 200px; }
 
+#movie-list {
+  padding-top: 55px; }
+
 #filterbtn {
-  padding-top: 60px;
-  margin-left: 7px; }
+  padding-top: 70px;
+  margin-left: 7px;
+  display: none; }
 
 .movie-holder {
   background-color: rgba(50, 50, 50, 0.7);
