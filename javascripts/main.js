@@ -80,7 +80,7 @@ function($, Handlebars, bootstrap, ask, _firebase, starrating, templates) {
     var movie = snapshot.val();
     $("#movie-list").html(templates.movies({movie:movie}));
     $(".input-id").rating({'size':'sm', 'showCaption': false, 'showClear': false});
-    $('#input-id').on('rating.change', function(event, value, caption) {
+    $('.input-id').on('rating.change', function(event, value, caption) {
       console.log(value);
     });
     });
