@@ -17,57 +17,36 @@ requirejs.config({
   }
 });
 
-requirejs(["jquery","hbs", "bootstrap",'ask-OMDB', 'firebase' ],
-function($, Handlebars, bootstrap, ask, _firebase) {
+requirejs(["jquery", "hbs", "bootstrap", "ask-OMDB", "firebase", "templates"],
+function($, Handlebars, bootstrap, ask, _firebase, templates) {
   var tempMovies;
   var allMovies;
-
   $("#find").click(function(evt){
     evt.preventDefault();
-    console.log(evt);
-    ask.getMovies(function(movie) {
-      tempMovies = movie; 
-      $("#titleIn").val(movie.Title);
-      $('#actorsIn').val(movie.Actors);
-      $('#yearIn').val(movie.Year);
+    ask.getMovies("find", function(searchedMovies) {
+      $("#find-results").html(templates.found(searchedMovies));
     });
-    $("#titleImput").val('');
   });
 
 
-  $("#addToMyList").click(function(addevt){
-    console.log(addevt);
-    var newMovie = {};
-    newMovie.title = $("#titleIn").val();
-    newMovie.actors = $("#actorsIn").val();
-    newMovie.year = $("#yearIn").val();
-    newMovie.rating = $("#ratingIn").val();
-    console.log("value of radio buttons", $("#seenIt").val());
-    //newMovie.seenit = $("input[name='viewed']:checked").val() === "yes" ? true : false,
-    // console.log(newMovie);
-
-    $.ajax({
-      url: "https://movies-refactored.firebaseio.com/movie.json",
-      method: "POST",
-      data: JSON.stringify(newMovie)
-    }).done(function(addedMovie) {
-      console.log("Your added movie is", addedMovie);
-    });   
-
-    $("#titleIn").val('');
-    $("#actorsIn").val('');
-    $("#yearIn").val('');
+  $("#find-results").on("click", ".add-btn", function(evt){
+    evt.preventDefault();
+    var addMovie = {};
+    addMovie.addTitle = $(this).siblings(".find-title").html();
+    addMovie.addYear = $(this).siblings(".find-year").html();
+    ask.getMovies(addMovie, function(newMovie) {
+      $.ajax({
+        url: "https://movies-refactored.firebaseio.com/movie.json",
+        method: "POST",
+        data: JSON.stringify(newMovie)
+      });
+    });
   });
 
 
   var myFirebaseRef = new Firebase("https://movies-refactored.firebaseio.com/");
   myFirebaseRef.child("movie").on("value", function(snapshot) {
-
     var movie = snapshot.val();
-
-    require(['hbs!../templates/movies'], function(movieTemplate){
-      var populatedTemplate = movieTemplate({movie:movie});
-      $("#movie-list").html(populatedTemplate);
-    });     
+    $("#movie-list").html(templates.movies({movie:movie}));
   });
 });

@@ -1,0 +1,12 @@
+{{#if Search}}
+{{#each Search}}
+<div>
+  <button class="btn btn-success add-btn" data-dismiss="modal">Add</button><span class="find-title">{{Title}}</span><span> - </span><span class="find-year">{{Year}}</span>
+  <hr>
+</div>
+{{/each}}
+{{else}}
+<div>
+  <span>No matches found.</span>
+</div>
+{{/if}}

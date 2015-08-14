@@ -1,7 +1,11 @@
 {{#each movie}}
 <section class="movie-holder" key="{{@key}}">
-  <div>
+  <div class="poster">
+    {{#if poster}}
     <img src="{{poster}}" alt="{{title}} poster">
+    {{else}}
+    <h3>{{title}}</h3>
+    {{/if}}
   </div>
   {{#if seenit}}
   <div class="rating">stars go here</div>
