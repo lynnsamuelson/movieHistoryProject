@@ -7,9 +7,11 @@ requirejs.config({
     'jquery': '../bower_components/jquery/dist/jquery.min',
     'hbs': '../bower_components/require-handlebars-plugin/hbs',
     'bootstrap': '../bower_components/bootstrap/dist/js/bootstrap.min',
-    'firebase': '../bower_components/firebase/firebase'
+    'firebase': '../bower_components/firebase/firebase',
+    'star-rating': 'star-rating.min'
   },
   shim: {
+    'star-rating': ['jquery'],
     'bootstrap': ['jquery'],
     'fireebase': {
       export: 'Firebase'
@@ -17,8 +19,8 @@ requirejs.config({
   }
 });
 
-requirejs(["jquery", "hbs", "bootstrap", "ask-OMDB", "firebase", "templates"],
-function($, Handlebars, bootstrap, ask, _firebase, templates) {
+requirejs(["jquery", "hbs", "bootstrap", "ask-OMDB", "firebase","star-rating", "templates"],
+function($, Handlebars, bootstrap, ask, _firebase, starrating, templates) {
   var tempMovies;
   var allMovies;
   $("#find").click(function(evt){
@@ -27,6 +29,8 @@ function($, Handlebars, bootstrap, ask, _firebase, templates) {
       $("#find-results").html(templates.found(searchedMovies));
     });
   });
+
+  
 
 
   $("#find-results").on("click", ".add-btn", function(evt){
@@ -48,5 +52,9 @@ function($, Handlebars, bootstrap, ask, _firebase, templates) {
   myFirebaseRef.child("movie").on("value", function(snapshot) {
     var movie = snapshot.val();
     $("#movie-list").html(templates.movies({movie:movie}));
-  });
+    $(".input-id").rating({'size':'sm', 'showCaption': false, 'showClear': false});
+    $('#input-id').on('rating.change', function(event, value, caption) {
+      console.log(value);
+    });
+    });
 });
