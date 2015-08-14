@@ -43,7 +43,32 @@ function($, Handlebars, bootstrap, ask, _firebase, starrating, templates) {
   });
 
   function alphebetizer(sentObject) {
-
+    var internalMovieArray = [];
+    for(var key in sentObject){
+      var movieObj = {};
+      movieObj[key] = sentObject[key];
+      internalMovieArray[internalMovieArray.length] = movieObj;
+    }
+    sortedMovieArray = internalMovieArray.sort(function(a, b) {
+      var aTitle;
+      var bTitle;
+      for(var key1 in a) {
+        aTitle = a[key1].title;
+      }
+      for(var key2 in b) {
+        bTitle = b[key2].title;
+      }
+      if(aTitle > bTitle){
+        return 1;
+      }
+      if(aTitle < bTitle){
+        return -1;
+      }
+      if(aTitle == bTitle){
+        return 0;
+      }
+    });
+    return sortedMovieArray;
   }
 
   function keyGetter(clickedElement) {
@@ -112,15 +137,12 @@ function($, Handlebars, bootstrap, ask, _firebase, starrating, templates) {
 
   var myFirebaseRef = new Firebase("https://movies-refactored.firebaseio.com/");
   myFirebaseRef.child("movie").on("value", function(snapshot) {
+    arrayOfMovies = [];
     var movie = snapshot.val();
     console.log(movie);
-    for(var key in movie){
-      var movieObj = {};
-      movieObj[key] = movie[key];
-      arrayOfMovies[arrayOfMovies.length] = movieObj;
-    }
-    console.log(arrayOfMovies);
-    $("#movie-list").html(templates.movies({movie:movie}));
+    arrayOfMovies = alphebetizer(movie);
+    console.log("sorted", arrayOfMovies);
+    $("#movie-list").html(templates.movies(arrayOfMovies));
     $(".input-id").rating({'size':'sm', 'showCaption': false, 'showClear': false});
   });
 });
