@@ -65,11 +65,17 @@ function($, Handlebars, bootstrap, ask, _firebase, starrating, templates) {
   });
 
   $("#movie-list").on("mouseover", ".poster", function(e) {
-    $(this).find(".delete-btn").removeClass("hidden");
+    if($(this).parents(".movie-holder").find("input").hasClass("rating")){
+    } else {
+      $(this).find(".delete-btn").removeClass("hidden");
+    }
   });
 
   $("#movie-list").on("mouseout", ".poster", function(e) {
-    $(this).find(".delete-btn").addClass("hidden");
+    if($(this).parents(".movie-holder").find("input").hasClass("rating")){
+    } else {
+      $(this).find(".delete-btn").addClass("hidden");
+    }
   });
 
   $("#movie-list").on("click", ".delete-btn", function(e) {
