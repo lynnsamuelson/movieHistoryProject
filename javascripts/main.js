@@ -23,6 +23,17 @@ requirejs(["jquery", "hbs", "bootstrap", "ask-OMDB", "firebase","star-rating", "
 function($, Handlebars, bootstrap, ask, _firebase, starrating, templates) {
   var tempMovies;
   var allMovies;
+
+  $("#search").click(function(evt){
+    evt.preventDefault();
+    var allMovieRatings = $("input");
+    console.log(allMovieRatings);
+    for(var i=0; i<allMovieRatings.length; i++) {
+      var retrievedRating = $(allMovieRatings[i]).val();
+      $(".input-id").rating('update', retrievedRating);
+    }
+  });
+
   $("#find").click(function(evt){
     evt.preventDefault();
     ask.getMovies("find", function(searchedMovies) {
@@ -72,6 +83,19 @@ function($, Handlebars, bootstrap, ask, _firebase, starrating, templates) {
     changedMovie.title = movieToChange.title;
     changedMovie.poster = movieToChange.poster;
     changedMovie.seenit = true;
+    changedMovie.rating = 5;
+    console.log(changedMovie);
+    myFirebaseRef.child("movie").child(movieToChange.key).set(changedMovie);
+  });
+
+  $("#movie-list").on('rating.change', '.input-id', function(event, value, caption) {
+    var movieToChange = keyGetter($(this));
+    var changedMovie = {};
+    changedMovie.title = movieToChange.title;
+    changedMovie.poster = movieToChange.poster;
+    changedMovie.seenit = true;
+    changedMovie.rating = Number(value);
+    console.log(changedMovie);
     myFirebaseRef.child("movie").child(movieToChange.key).set(changedMovie);
   });
 
@@ -80,8 +104,5 @@ function($, Handlebars, bootstrap, ask, _firebase, starrating, templates) {
     var movie = snapshot.val();
     $("#movie-list").html(templates.movies({movie:movie}));
     $(".input-id").rating({'size':'sm', 'showCaption': false, 'showClear': false});
-    $('#input-id').on('rating.change', function(event, value, caption) {
-      console.log(value);
-    });
-    });
+  });
 });
