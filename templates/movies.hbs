@@ -1,6 +1,7 @@
 {{#each movie}}
 <section class="movie-holder" key="{{@key}}">
   <div class="poster">
+    <button class="btn btn-default delete-btn hidden"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
     {{#if poster}}
     <img src="{{poster}}" alt="{{title}} poster">
     {{else}}

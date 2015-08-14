@@ -16,7 +16,9 @@ define(['jquery'], function($) {
         }).done(function(data) {
           var newMovie = {};
           newMovie.title = data.Title;
-          newMovie.poster = data.Poster;
+          if(data.Poster !== "N/A") {
+            newMovie.poster = data.Poster;
+          }
           callbackfunction.call(this, newMovie);
         });
       }
