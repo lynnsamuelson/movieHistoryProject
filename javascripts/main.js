@@ -8,7 +8,7 @@ requirejs.config({
     'hbs': '../bower_components/require-handlebars-plugin/hbs',
     'bootstrap': '../bower_components/bootstrap/dist/js/bootstrap.min',
     'firebase': '../bower_components/firebase/firebase',
-    'star-rating': 'star-rating.min'
+    'star-rating': 'star-rating'
   },
   shim: {
     'star-rating': ['jquery'],
@@ -31,8 +31,11 @@ function($, Handlebars, bootstrap, ask, _firebase, starrating, templates) {
   });
 
   function keyGetter(clickedElement) {
-    var keyOfClickedMovie = $(clickedElement).parents(".movie-holder").attr("key");
-    return keyOfClickedMovie;
+    var clickedMovie = {};
+    clickedMovie.key = $(clickedElement).parents(".movie-holder").attr("key");
+    clickedMovie.title = $(clickedElement).parents(".movie-holder").attr("title");
+    clickedMovie.poster = $(clickedElement).parents(".movie-holder").find("img").attr("src");
+    return clickedMovie;
   }
 
 
@@ -60,7 +63,16 @@ function($, Handlebars, bootstrap, ask, _firebase, starrating, templates) {
 
   $("#movie-list").on("click", ".delete-btn", function(e) {
     var keyOfMovieToDelete = keyGetter($(this));
-    myFirebaseRef.child("movie").child(keyOfMovieToDelete).set(null);
+    myFirebaseRef.child("movie").child(keyOfMovieToDelete.key).set(null);
+  });
+
+  $("#movie-list").on("click", ".watched-btn", function(e) {
+    var movieToChange = keyGetter($(this));
+    var changedMovie = {};
+    changedMovie.title = movieToChange.title;
+    changedMovie.poster = movieToChange.poster;
+    changedMovie.seenit = true;
+    myFirebaseRef.child("movie").child(movieToChange.key).set(changedMovie);
   });
 
   var myFirebaseRef = new Firebase("https://movies-refactored.firebaseio.com/");

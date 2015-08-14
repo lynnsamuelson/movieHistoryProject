@@ -1,5 +1,5 @@
 {{#each movie}}
-<section class="movie-holder" key="{{@key}}">
+<section class="movie-holder" key="{{@key}}" title="{{title}}">
   <div class="poster">
     <button class="btn btn-default delete-btn hidden"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
     {{#if poster}}
@@ -9,7 +9,9 @@
     {{/if}}
   </div>
   {{#if seenit}}
-  <div class="rating"><input id="input-id" type="number" class="input-id rating" min=0 max=10 step=1 data-size="xs" ></div>
+  <div>
+    <input id="input-id" type="number" class="input-id rating" min=0 max=10 step=1 data-size="xs" >
+  </div>
   {{else}}
   <div>
     <button class="btn btn-success watched-btn">Watched</button>

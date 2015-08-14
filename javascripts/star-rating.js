@@ -333,11 +333,7 @@
             cap = isEmpty(capVal) ? self.defaultCaption.replace(/\{rating\}/g, val) : capVal;
             css = isEmpty(cssVal) ? self.clearCaptionClass : cssVal;
             caption = (val === self.clearValue) ? self.clearCaption : cap;
-            console.log(cap);
             return '<span class="' + css + '">' + caption + '</span>';
-            // $('#input-2c').click(function(e) {
-            //     console.log("clicky", val);
-            // });
         },
         getWidthFromValue: function (val) {
             var self = this, min = self.min, max = self.max;
