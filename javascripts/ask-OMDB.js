@@ -16,9 +16,11 @@ define(['jquery'], function($) {
         }).done(function(data) {
           var newMovie = {};
           newMovie.title = data.Title;
+          newMovie.year = data.Year;
           if(data.Poster !== "N/A") {
             newMovie.poster = data.Poster;
           }
+          newMovie.notadded = true;
           callbackfunction.call(this, newMovie);
         });
       }

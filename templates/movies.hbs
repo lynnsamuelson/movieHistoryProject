@@ -1,5 +1,5 @@
-{{#each movie}}
-  <section class="movie-holder" key="{{@key}}" title="{{title}}">
+{{#each this}}
+  <section class="movie-holder" key="{{key}}" title="{{title}}">
     <div class="poster">
       <button class="btn btn-default delete-btn hidden"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
       {{#if poster}}
@@ -13,7 +13,7 @@
         <input type="number" class="input-id rating" min=0 max=10 step=1 data-size="xs" val={{rating}}>
       </div>
     {{else}}
-      {{#if toadd}}
+      {{#if notadded}}
       <div>
         <button class="btn btn-success add-btn">Add</button>
       </div>

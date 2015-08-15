@@ -38,34 +38,35 @@ function($, Handlebars, bootstrap, ask, _firebase, starrating, templates) {
   $("#find").click(function(evt){
     evt.preventDefault();
     ask.getMovies("find", function(searchedMovies) {
-      $("#find-results").html(templates.found(searchedMovies));
+      console.log(searchedMovies);
     });
   });
 
-  function alphebetizer(sentObject) {
+  function alphabetizer(sentMoviesObject, isFirebase) {
     var internalMovieArray = [];
-    for(var key in sentObject){
-      var movieObj = {};
-      movieObj[key] = sentObject[key];
-      internalMovieArray[internalMovieArray.length] = movieObj;
+    for(var keyFB in sentMoviesObject) {
+      if(isFirebase) {
+        sentMoviesObject[keyFB].key = keyFB;
+      }
+      internalMovieArray[internalMovieArray.length] = sentMoviesObject[keyFB];
     }
     sortedMovieArray = internalMovieArray.sort(function(a, b) {
-      var aTitle;
-      var bTitle;
-      for(var key1 in a) {
-        aTitle = a[key1].title;
-      }
-      for(var key2 in b) {
-        bTitle = b[key2].title;
-      }
-      if(aTitle > bTitle){
+      if(a.title > b.title) {
         return 1;
       }
-      if(aTitle < bTitle){
+      if(a.title < b.title) {
         return -1;
       }
-      if(aTitle == bTitle){
-        return 0;
+      if(a.title == b.title) {
+        if(a.year > b.year) {
+          return 1;
+        }
+        if(a.year < b.year) {
+          return -1;
+        }
+        if(a.year == b.year) {
+          return 0;
+        }
       }
     });
     return sortedMovieArray;
@@ -139,9 +140,7 @@ function($, Handlebars, bootstrap, ask, _firebase, starrating, templates) {
   myFirebaseRef.child("movie").on("value", function(snapshot) {
     arrayOfMovies = [];
     var movie = snapshot.val();
-    console.log(movie);
-    arrayOfMovies = alphebetizer(movie);
-    console.log("sorted", arrayOfMovies);
+    arrayOfMovies = alphabetizer(movie, true);
     $("#movie-list").html(templates.movies(arrayOfMovies));
     $(".input-id").rating({'size':'sm', 'showCaption': false, 'showClear': false});
   });
