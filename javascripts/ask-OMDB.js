@@ -12,7 +12,7 @@ define(['jquery'], function($) {
         });
       } else {
         $.ajax({
-          url: "http://www.omdbapi.com/?t=" + sentInfo.addTitle + "&y=" + sentInfo.addYear + "&plot=short&r=json"
+          url: "http://www.omdbapi.com/?t=" + sentInfo.Title + "&y=" + sentInfo.Year + "&plot=short&r=json"
         }).done(function(data) {
           var newMovie = {};
           newMovie.title = data.Title;

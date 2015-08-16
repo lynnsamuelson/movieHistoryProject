@@ -37,8 +37,15 @@ function($, Handlebars, bootstrap, ask, _firebase, starrating, templates) {
 
   $("#find").click(function(evt){
     evt.preventDefault();
+    var foundMovieInfoGetter = function(foundMovies) {
+      console.log("foundMovies", foundMovies);
+    };
     ask.getMovies("find", function(searchedMovies) {
-      console.log(searchedMovies);
+      var searchedMoviesArray = searchedMovies.Search;
+      console.log("searchedMoviesArray", searchedMoviesArray);
+      for(var i=0; i<searchedMoviesArray.length; i++) {
+        ask.getMovies(searchedMoviesArray[i], foundMovieInfoGetter);
+      }
     });
   });
 
