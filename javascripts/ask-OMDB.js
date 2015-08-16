@@ -1,16 +1,13 @@
 define(['jquery'], function($) {
   return {
     getMovies: function(sentInfo, callbackfunction) {
-      var searchString;
-      if(sentInfo === "find") {
-        searchString = $("#search-input").val();
+      if(typeof sentInfo === "string") { // If it's a string, we're searching...
         $.ajax({
-          url: "http://www.omdbapi.com/?s=" + searchString + "&type=movie"
+          url: "http://www.omdbapi.com/?s=" + sentInfo + "&type=movie"
         }).done(function(data) {
-          $("#search-input").val("");
           callbackfunction.call(this, data);
         });
-      } else {
+      } else { // ...otherwise it's a movie object, and we're pulling its info.
         $.ajax({
           url: "http://www.omdbapi.com/?t=" + sentInfo.Title + "&y=" + sentInfo.Year + "&plot=short&r=json"
         }).done(function(data) {
