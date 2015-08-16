@@ -17,6 +17,7 @@ define(['jquery'], function($) {
           var newMovie = {};
           newMovie.title = data.Title;
           newMovie.year = data.Year;
+          newMovie.imdbid =data.imdbID;
           if(data.Poster !== "N/A") {
             newMovie.poster = data.Poster;
           }
