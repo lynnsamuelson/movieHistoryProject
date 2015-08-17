@@ -64,7 +64,6 @@ function($, _, Handlebars, bootstrap, ask, _firebase, starrating, templates) {
     });
   });
 
-<<<<<<< HEAD
   function alphabetizer(sentMovies, isFirebaseObject) {
     var internalMovieArray = [];
     if(isFirebaseObject) {

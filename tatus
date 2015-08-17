@@ -1,0 +1,210 @@
+[33mcommit 1007e3c5cd1c10992153eae727ee0124feba8be9[m
+Merge: 580767e 3ac1ffc
+Author: Ryan Tanay <ryantanay@newevolution.org>
+Date:   Mon Aug 17 09:14:39 2015 -0500
+
+    Resolved merge conflicts with lsbranch5
+
+[33mcommit 3ac1ffc21924b29e751a8aee213701c71b91270a[m
+Author: Lynn Samuelson <lynn.samuelson@gmail.com>
+Date:   Mon Aug 17 09:11:42 2015 -0500
+
+    worked on stars
+
+[33mcommit 580767eef13d0ec0324fdafbaba0b7a10d989112[m
+Author: Ryan Tanay <ryantanay@newevolution.org>
+Date:   Sun Aug 16 15:18:43 2015 -0500
+
+    Finished up the search functionality, cleaned up the ask-OMDB module a bit, added all needed field values to the various DB objects, cleaned up the change value code a bit, as the new values only need to be added on, instead of copying all values to a new object and then adding the new values, set filter to leave out searched movies whose IMDB IDs match those we already have.
+
+[33mcommit 034c6fc06471fd15b3578b9c9cca803498c41a55[m
+Author: Ryan Tanay <ryantanay@newevolution.org>
+Date:   Sun Aug 16 11:08:10 2015 -0500
+
+    Added imdbID field to the retrieval and HB template to prevent duplicate movies appearing during search.
+
+[33mcommit 8921b813bd7e239fcbf2693aaa0cf57232a64445[m
+Author: Ryan Tanay <ryantanay@newevolution.org>
+Date:   Sun Aug 16 10:53:56 2015 -0500
+
+    Working on the search function, now returns full OMDb object for all searched movie hits.  Now to add all of them to an object to add to the extant firebase DB movies object then sort, then display.
+
+[33mcommit 2449a4c77c78150deab6e9954a920809d987eedf[m
+Author: Lynn Samuelson <lynn.samuelson@gmail.com>
+Date:   Sat Aug 15 13:14:59 2015 -0500
+
+    worked on linking the stars to update on refresh but not complete yet
+
+[33mcommit 92f17d45a2fd0951c7b2037eb5c4f783e021e3d3[m
+Author: Ryan Tanay <ryantanay@newevolution.org>
+Date:   Sat Aug 15 11:49:17 2015 -0500
+
+    Got alphabetizer working properly, formatted HB template for movies to accept an array instead of an object, working on the foundations for new movie retrieval and insertion into the DOM for adding to FB.
+
+[33mcommit 7f5204d045e2167e8fa9b2d6a19e65a47d3997b2[m
+Author: Ryan Tanay <ryantanay@newevolution.org>
+Date:   Fri Aug 14 16:00:01 2015 -0500
+
+    Created alphebetizer for sent arrays of movies.  Now to totally rework it so that the keys are added into the objects as keys instead of used as keys for the objects instead.
+
+[33mcommit d79a76db9a470880edd94c2776a518bf1b292030[m
+Merge: c5f7f23 8374523
+Author: Ryan Tanay <ryantanay@newevolution.org>
+Date:   Fri Aug 14 14:27:16 2015 -0500
+
+    Merge ryan and austin
+
+[33mcommit c5f7f23c55dac13128fd89274e2bf924226cca2e[m
+Author: Ryan Tanay <ryantanay@newevolution.org>
+Date:   Fri Aug 14 14:24:41 2015 -0500
+
+    Removed modal, working on alphebetizing crap.
+
+[33mcommit 8374523870b436d7c05d80fc0d6516cf19f7de58[m
+Author: AustinScott3573 <Ascott3573@gmail.com>
+Date:   Fri Aug 14 14:24:11 2015 -0500
+
+    Oppsy commit 2
+
+[33mcommit a9d8896e8df86647a6641e7677cab83f6a60e2ce[m
+Author: Ryan Tanay <ryantanay@newevolution.org>
+Date:   Fri Aug 14 13:17:45 2015 -0500
+
+    Disabled delete button on watched movies.
+
+[33mcommit d605dda9e3bb98681e83c4c301972295145f4c95[m
+Author: Ryan Tanay <ryantanay@newevolution.org>
+Date:   Fri Aug 14 12:44:23 2015 -0500
+
+    Added ratings submission to the database, added a default rating on watched-click, attempting to display the database rating properly on the loaded movie objects.
+
+[33mcommit 6a5e454640d4d560913a1baeab3b1c1c8a85bfae[m
+Author: Ryan Tanay <ryantanay@newevolution.org>
+Date:   Fri Aug 14 11:27:03 2015 -0500
+
+    Fixed broken HTML by bringing in HTML from older branch
+
+[33mcommit b85ac2da4035988087d66c7fef6057d1c97adeca[m
+Author: Ryan Tanay <ryantanay@newevolution.org>
+Date:   Fri Aug 14 11:22:51 2015 -0500
+
+    Added in watched functionality (maybe), changed click movie getter to get all movie properties not just key.
+
+[33mcommit 0bb3730de15cb21e8fb637b7962febb771de7c5f[m
+Merge: dfa2b09 15fcc5d
+Author: Ryan Tanay <ryantanay@newevolution.org>
+Date:   Fri Aug 14 10:37:15 2015 -0500
+
+    Merged in ryan, lynn was on master
+
+[33mcommit 15fcc5d63d97ed64a30030940e09a5e57a5662e1[m
+Author: Ryan Tanay <ryantanay@newevolution.org>
+Date:   Fri Aug 14 10:34:03 2015 -0500
+
+    Added delete button, fixed large poster images sizes, added check for no poster. More styling.
+
+[33mcommit dfa2b09daf8737961c79e5eb7ad0b4298f0dec3b[m
+Author: Lynn Samuelson <lynn.samuelson@gmail.com>
+Date:   Fri Aug 14 10:25:35 2015 -0500
+
+    stars rating template included
+
+[33mcommit 212dd107b540207349f49e0cb0c0197de7f7b3a4[m
+Author: Ryan Tanay <ryantanay@newevolution.org>
+Date:   Thu Aug 13 21:30:03 2015 -0500
+
+    Created find modal & handlebars template and directed find data to populate it.  Enabled add buttons on find modal to grab found title & year and use that to query OMDb for the actual move & add it to the firebase.  Styled the hell out of just about everything.
+
+[33mcommit 5fed46faaf425aecddd49f9305441b7f1af24675[m
+Merge: 0ad1cba 16d26fc
+Author: Ryan Tanay <ryantanay@newevolution.org>
+Date:   Thu Aug 13 16:12:52 2015 -0500
+
+    Merged in arsbranch4
+
+[33mcommit 0ad1cba1dbc32cfee037c240c6e2545ef9e2678d[m
+Author: Ryan Tanay <ryantanay@newevolution.org>
+Date:   Thu Aug 13 16:09:37 2015 -0500
+
+    Fixed formatting on HTML and JS files, added empty template for modal.
+
+[33mcommit 16d26fcfac0066c6caeda9a4d1f0ece26f8373fb[m
+Author: AustinScott3573 <Ascott3573@gmail.com>
+Date:   Thu Aug 13 15:45:19 2015 -0500
+
+    Thursday final commit. Find button works.
+
+[33mcommit 416e25073b3a2a3c266a442266d4157fc9fab97f[m
+Merge: a801c0b 3682557
+Author: Ryan Tanay <ryantanay@newevolution.org>
+Date:   Thu Aug 13 15:02:43 2015 -0500
+
+    Merge branch 'arsbranch3'
+
+[33mcommit 3682557dfb53836710506d177216e077a2381c26[m
+Author: Ryan Tanay <ryantanay@newevolution.org>
+Date:   Thu Aug 13 15:02:26 2015 -0500
+
+    sass caaaaacheeeee
+
+[33mcommit a801c0b6f6854b3da9dadacee3698510429c3610[m
+Author: Ryan Tanay <ryantanay@newevolution.org>
+Date:   Thu Aug 13 15:01:25 2015 -0500
+
+    sass cache is the worst
+
+[33mcommit 1eafe4bcdc21c4f74fe795ea954c42985ef5fbb7[m
+Author: AustinScott3573 <Ascott3573@gmail.com>
+Date:   Thu Aug 13 14:56:56 2015 -0500
+
+    Commit for Ryan to chew up and spit out the HTML properly
+
+[33mcommit e38ba2406f53e5f4417e8bedbc7b19be692f9793[m
+Author: Ryan Tanay <ryantanay@newevolution.org>
+Date:   Thu Aug 13 14:56:30 2015 -0500
+
+    Fixed formatting on main.js
+
+[33mcommit 784d0097de3142ca131a5bbe486518cd45cb9c0f[m
+Merge: 639de7a 71173d0
+Author: Ryan Tanay <ryantanay@newevolution.org>
+Date:   Thu Aug 13 14:33:37 2015 -0500
+
+    Merged in ryan and austin
+
+[33mcommit 639de7a8a52f0651034ad667853813fff9b6df3e[m
+Merge: 8ed6a2c 580bcff
+Author: Ryan Tanay <ryantanay@newevolution.org>
+Date:   Thu Aug 13 14:31:21 2015 -0500
+
+    Sass is a jerk
+
+[33mcommit 580bcffa11a22e70e500ded99a78f6f7fe3c36b8[m
+Author: Ryan Tanay <ryantanay@newevolution.org>
+Date:   Thu Aug 13 14:29:24 2015 -0500
+
+    more sass garbage
+
+[33mcommit 8ed6a2c9fe99ad65da3bd4c9e80a23f6210d5db6[m
+Author: Ryan Tanay <ryantanay@newevolution.org>
+Date:   Thu Aug 13 14:28:31 2015 -0500
+
+    main.css.map is useless
+
+[33mcommit 71173d0785be8f6138e3f8c88d8f8fceee58100a[m
+Author: Ryan Tanay <ryantanay@newevolution.org>
+Date:   Thu Aug 13 14:27:23 2015 -0500
+
+    Removed some really broken JS that didn't do anything, formatted the handlebars to show if it has stars.
+
+[33mcommit 385567364807f3b99018008a8dec58e658300f11[m
+Author: AustinScott3573 <Ascott3573@gmail.com>
+Date:   Thu Aug 13 14:24:54 2015 -0500
+
+    Navbar complete, pushed it real good.
+
+[33mcommit 470135ec3939ef807f289ac215a559fd00c922c8[m
+Author: Ryan Tanay <ryantanay@newevolution.org>
+Date:   Thu Aug 13 12:32:51 2015 -0500
+
+    Switched all DB references over to our new DB and changed the HB template movie div to a section instead.
