@@ -1,5 +1,5 @@
 // The main module (i.e. javascripts/main.js) should then use the 
-// return objects from all three dependencies to populate your song list.
+// return objects from all three dependencies to populate your Movie list.
 
 requirejs.config({
   baseUrl: './javascripts',
