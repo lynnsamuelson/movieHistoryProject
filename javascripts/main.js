@@ -30,6 +30,7 @@ function($, _, Handlebars, bootstrap, ask, _firebase, starrating, templates) {
   // Search button
   $("#find").click(function(evt){
     evt.preventDefault();
+    $("#filterbtn").show( 1 );
     var searchString = $("#search-input").val().toLowerCase();
     var searchedMoviesArray = [];
     var foundMoviesArray = [];
@@ -64,7 +65,6 @@ function($, _, Handlebars, bootstrap, ask, _firebase, starrating, templates) {
     });
   });
 
-<<<<<<< HEAD
   function alphabetizer(sentMovies, isFirebaseObject) {
     var internalMovieArray = [];
     if(isFirebaseObject) {
@@ -96,6 +96,21 @@ function($, _, Handlebars, bootstrap, ask, _firebase, starrating, templates) {
     });
     return sortedMovieArray;
   }
+
+//Filter Button inbetween posters and Nav Bar. Tied to #Find Id
+//Which is tied to the search button in the HTML
+//====================================================================    
+    $("#filterbtn").click(function(evt){
+    console.log(evt);
+    evt.preventDefault();
+    ask.getMovies("find", function(searchedMovies) {
+      $("#find-results").html(templates.found(searchedMovies));
+    });
+  });
+
+  //Clicking the Search Button in the HTML will
+  //make the filter buttons Visible
+//==============================================
 
   // Get info for movie on any of its buttons' click
   function keyGetter(clickedElement) {
