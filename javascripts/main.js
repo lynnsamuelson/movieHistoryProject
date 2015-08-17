@@ -100,7 +100,7 @@ function($, _, Handlebars, bootstrap, ask, _firebase, starrating, templates) {
 //Filter Button inbetween posters and Nav Bar. Tied to #Find Id
 //Which is tied to the search button in the HTML
 //====================================================================    
-    $("#filterbtn").click(function(evt){
+  $("#filterbtn").click(function(evt){
     console.log(evt);
     evt.preventDefault();
     ask.getMovies("find", function(searchedMovies) {
@@ -175,6 +175,7 @@ function($, _, Handlebars, bootstrap, ask, _firebase, starrating, templates) {
   $("#movie-list").on('rating.change', '.input-id', function(event, value, caption) {
     var movieToChange = keyGetter($(this));
     movieToChange.rating = Number(value);
+    movieToChange.seenit = true;
     console.log("movieToChange", movieToChange);
     myFirebaseRef.child("movie").child(movieToChange.key).set(movieToChange);
   });
@@ -187,5 +188,11 @@ function($, _, Handlebars, bootstrap, ask, _firebase, starrating, templates) {
     arrayOfMovies = alphabetizer(movie, true);
     $("#movie-list").html(templates.movies(arrayOfMovies));
     $(".input-id").rating({'size':'sm', 'showCaption': false, 'showClear': false});
+    var allStarsArr = $(".input-id");
+    for(var i=0; i<allStarsArr.length; i++) {
+      var ratingsKey = $(allStarsArr[i]).parents(".movie-holder").attr("key");
+      var theRating = movie[ratingsKey].rating;
+      $(allStarsArr[i]).rating("update", theRating);
+    }
   });
 });
