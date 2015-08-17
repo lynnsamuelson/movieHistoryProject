@@ -26,15 +26,6 @@ function($, _, Handlebars, bootstrap, ask, _firebase, starrating, templates) {
   var allMovies;
   var arrayOfMovies = [];
 
-  $("#search").click(function(evt){
-    evt.preventDefault();
-    var allMovieRatings = $("input");
-    console.log(allMovieRatings);
-    for(var i=0; i<allMovieRatings.length; i++) {
-      var retrievedRating = $(allMovieRatings[i]).val();
-      $(".input-id").rating('update', retrievedRating);
-    }
-  });
 
   // Search button
   $("#find").click(function(evt){
@@ -73,6 +64,7 @@ function($, _, Handlebars, bootstrap, ask, _firebase, starrating, templates) {
     });
   });
 
+<<<<<<< HEAD
   function alphabetizer(sentMovies, isFirebaseObject) {
     var internalMovieArray = [];
     if(isFirebaseObject) {
