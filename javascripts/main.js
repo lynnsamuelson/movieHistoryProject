@@ -228,5 +228,9 @@ function($, _, Handlebars, bootstrap, ask, _firebase, starrating, templates) {
       var theRating = movie[ratingsKey].rating;
       $(allStarsArr[i]).rating("update", theRating);
     }
+    filterResults();
+    seenMovies.hide();
+    wishMovies.show();
+    addMovies.hide();
   });
 });
