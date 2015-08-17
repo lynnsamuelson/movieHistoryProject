@@ -65,6 +65,52 @@ function($, _, Handlebars, bootstrap, ask, _firebase, starrating, templates) {
     });
   });
 
+
+//targets the watched button
+  var seenMovies = [];
+  var addMovies = [];
+  var wishMovies = [];
+
+  $('.watchedfilter').on('click', function(e) {
+    filterResults();
+    seenMovies.show();
+    wishMovies.hide();
+    addMovies.hide();
+    $('.watchedtoggle').addClass('active');
+    $('.wishtoggle').removeClass('active');
+    
+    //console.log('watched', seenMovies);
+  });
+
+//targets the add button
+  $('.filterAdd').on('click', function(e) {
+    filterResults();
+    seenMovies.hide();
+    wishMovies.hide();
+    addMovies.show();
+    //console.log('add', addMovies);
+  });
+  // console.log('add', addMovies);
+
+//targets the wish button
+  $('.filterWish').on('click', function(e) {
+    filterResults();
+    seenMovies.hide();
+    wishMovies.show();
+    addMovies.hide();
+    $('.watchedtoggle').removeClass('active');
+    $('.wishtoggle').addClass('active');
+    //console.log('wish', wishMovies);
+  });
+
+
+
+  function filterResults() {
+    seenMovies = $('.seenMovie').parents('.movie-holder');
+    addMovies = $('.add-btn').parents('.movie-holder');
+    wishMovies = $('.watched-btn').parents('.movie-holder');
+
+}
   function alphabetizer(sentMovies, isFirebaseObject) {
     var internalMovieArray = [];
     if(isFirebaseObject) {
@@ -101,7 +147,7 @@ function($, _, Handlebars, bootstrap, ask, _firebase, starrating, templates) {
 //Which is tied to the search button in the HTML
 //====================================================================    
     $("#filterbtn").click(function(evt){
-    console.log(evt);
+    //console.log(evt);
     evt.preventDefault();
     ask.getMovies("find", function(searchedMovies) {
       $("#find-results").html(templates.found(searchedMovies));
@@ -175,6 +221,7 @@ function($, _, Handlebars, bootstrap, ask, _firebase, starrating, templates) {
   $("#movie-list").on('rating.change', '.input-id', function(event, value, caption) {
     var movieToChange = keyGetter($(this));
     movieToChange.rating = Number(value);
+    movieToChange.seenit = true;
     console.log("movieToChange", movieToChange);
     myFirebaseRef.child("movie").child(movieToChange.key).set(movieToChange);
   });
