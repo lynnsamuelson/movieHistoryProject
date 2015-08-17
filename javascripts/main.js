@@ -232,5 +232,7 @@ function($, _, Handlebars, bootstrap, ask, _firebase, starrating, templates) {
     seenMovies.hide();
     wishMovies.show();
     addMovies.hide();
+    $('.watchedtoggle').removeClass('active');
+    $('.wishtoggle').addClass('active');
   });
 });
