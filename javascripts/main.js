@@ -25,7 +25,9 @@ function($, _, Handlebars, bootstrap, ask, _firebase, starrating, templates) {
   var tempMovies;
   var allMovies;
   var arrayOfMovies = [];
-
+  var seenMovies = [];
+  var addMovies = [];
+  var wishMovies = [];
 
   // Search button
   $("#find").click(function(evt){
@@ -65,12 +67,7 @@ function($, _, Handlebars, bootstrap, ask, _firebase, starrating, templates) {
     });
   });
 
-
 //targets the watched button
-  var seenMovies = [];
-  var addMovies = [];
-  var wishMovies = [];
-
   $('.watchedfilter').on('click', function(e) {
     filterResults();
     seenMovies.show();
@@ -78,8 +75,6 @@ function($, _, Handlebars, bootstrap, ask, _firebase, starrating, templates) {
     addMovies.hide();
     $('.watchedtoggle').addClass('active');
     $('.wishtoggle').removeClass('active');
-    
-    //console.log('watched', seenMovies);
   });
 
 //targets the add button
@@ -88,9 +83,7 @@ function($, _, Handlebars, bootstrap, ask, _firebase, starrating, templates) {
     seenMovies.hide();
     wishMovies.hide();
     addMovies.show();
-    //console.log('add', addMovies);
   });
-  // console.log('add', addMovies);
 
 //targets the wish button
   $('.filterWish').on('click', function(e) {
@@ -100,17 +93,14 @@ function($, _, Handlebars, bootstrap, ask, _firebase, starrating, templates) {
     addMovies.hide();
     $('.watchedtoggle').removeClass('active');
     $('.wishtoggle').addClass('active');
-    //console.log('wish', wishMovies);
   });
-
-
 
   function filterResults() {
     seenMovies = $('.seenMovie').parents('.movie-holder');
     addMovies = $('.add-btn').parents('.movie-holder');
     wishMovies = $('.watched-btn').parents('.movie-holder');
+  }
 
-}
   function alphabetizer(sentMovies, isFirebaseObject) {
     var internalMovieArray = [];
     if(isFirebaseObject) {
@@ -159,6 +149,7 @@ function($, _, Handlebars, bootstrap, ask, _firebase, starrating, templates) {
 
   // Get info for movie on any of its buttons' click
   function keyGetter(clickedElement) {
+    $("#filterbtn").hide();
     var clickedMovie = {};
     var firebaseKey = $(clickedElement).parents(".movie-holder").attr("key");
     if(firebaseKey !== "") {
@@ -212,7 +203,6 @@ function($, _, Handlebars, bootstrap, ask, _firebase, starrating, templates) {
     var movieToChange = keyGetter($(this));
     movieToChange.seenit = true;
     movieToChange.rating = 5;
-    console.log("movieToChange", movieToChange);
     myFirebaseRef.child("movie").child(movieToChange.key).set(movieToChange);
   });
 
@@ -221,7 +211,6 @@ function($, _, Handlebars, bootstrap, ask, _firebase, starrating, templates) {
     var movieToChange = keyGetter($(this));
     movieToChange.rating = Number(value);
     movieToChange.seenit = true;
-    console.log("movieToChange", movieToChange);
     myFirebaseRef.child("movie").child(movieToChange.key).set(movieToChange);
   });
 
