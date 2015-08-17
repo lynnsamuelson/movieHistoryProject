@@ -24,22 +24,6 @@ function($, Handlebars, bootstrap, ask, _firebase, starrating, templates) {
   var tempMovies;
   var allMovies;
 
-  $("#search").click(function(evt){
-    evt.preventDefault();
-    //$('.input-id').rating('update', 5);
-    console.log($('.input-id'));
-
-    //var allMovieRatings = $("input");
-    //console.log("all values", allMovieRatings)
-    // $('.input-id').on('update', 3, function(event) {
-    //   console.log("rating.refresh");
-    // });
-    //console.log("movie ratings", allMovieRatings);
-    // for(var i=0; i<allMovieRatings.length; i++) {
-    //   var retrievedRating = $(allMovieRatings[i]).val();
-    //   $(".input-id").rating('update', retrievedRating);
-    // }
-  });
 
   $("#find").click(function(evt){
     evt.preventDefault();
@@ -48,6 +32,16 @@ function($, Handlebars, bootstrap, ask, _firebase, starrating, templates) {
     });
   });
 
+  $("#search").click('input', function(evt){
+    evt.preventDefault();
+    console.log("rating");
+    // var ratingToChange = keyGetter($(this));
+    // var changedRating = {};
+    // changedMovie.rating = Number(value);
+    // console.log("captured rating", changedMovie.rating);
+    // $('.input-id').rating('update', changedMovie.rating);
+   });
+
   function keyGetter(clickedElement) {
     var clickedMovie = {};
     clickedMovie.key = $(clickedElement).parents(".movie-holder").attr("key");
@@ -55,14 +49,6 @@ function($, Handlebars, bootstrap, ask, _firebase, starrating, templates) {
     clickedMovie.poster = $(clickedElement).parents(".movie-holder").find("img").attr("src");
     return clickedMovie;
   }
-
-  // function ratingGetter(clickedElement) {
-  //   var getRating = {};
-  //   getRating.key = $(clickedElement).parents(".movie-holder").attr("key");
-  //   getRating.rating = $(clickedElement).parents(".movie-holder").attr("rating");
-  //   return getRating;
-  // }
-
 
   $("#find-results").on("click", ".add-btn", function(evt){
     evt.preventDefault();
@@ -119,6 +105,7 @@ function($, Handlebars, bootstrap, ask, _firebase, starrating, templates) {
     myFirebaseRef.child("movie").child(movieToChange.key).set(changedMovie);
   });
 
+  
   var myFirebaseRef = new Firebase("https://movies-refactored.firebaseio.com/");
   myFirebaseRef.child("movie").on("value", function(snapshot) {
     var movie = snapshot.val();
